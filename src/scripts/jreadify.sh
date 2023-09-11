@@ -1,0 +1,1 @@
+java -cp "libs/*" jreadify.cli.Main "$@"
