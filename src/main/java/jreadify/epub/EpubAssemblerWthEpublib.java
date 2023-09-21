@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class EpubAssemblerImpl implements EpubAssembler {
+public class EpubAssemblerWthEpublib implements EpubAssembler {
 
     @Override
     public void assemble(Ebook ebook) {

@@ -6,6 +6,6 @@ public interface PdfAssembler {
     void assemble(Ebook ebook);
 
     static PdfAssembler assemble() {
-        return new PDFAssemblerImpl();
+        return new PdfAssemblerWthIText();
     }
 }

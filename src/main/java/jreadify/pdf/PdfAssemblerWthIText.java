@@ -14,7 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-public class PDFAssemblerImpl implements PdfAssembler {
+public class PdfAssemblerWthIText implements PdfAssembler {
 
     @Override
     public void assemble(Ebook ebook) {
