@@ -10,11 +10,13 @@ import com.itextpdf.layout.element.IElement;
 import com.itextpdf.layout.properties.AreaBreakType;
 import jreadify.application.PdfAssembler;
 import jreadify.domain.Ebook;
+import org.springframework.stereotype.Component;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
+@Component
 public class PdfAssemblerWthIText implements PdfAssembler {
 
     @Override

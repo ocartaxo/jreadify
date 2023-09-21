@@ -3,6 +3,7 @@ package jreadify.cli;
 import jreadify.application.JReadifyParams;
 import lombok.Getter;
 import org.apache.commons.cli.*;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,6 +13,7 @@ import java.nio.file.Paths;
 import java.util.Comparator;
 
 @Getter
+@Component
 class CliOptionsReader implements JReadifyParams {
     private String format;
     private boolean verboseMode = false;

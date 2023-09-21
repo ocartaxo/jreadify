@@ -1,8 +1,11 @@
 package jreadify.cli;
 
+import jreadify.JReadifyConfig;
 import jreadify.application.JReadify;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.nio.file.Path;
+
 
 public class Main {
 
@@ -17,7 +20,9 @@ public class Main {
             Path outputFilesDir = cliOptions.getOutputFilesDir();
             verboseMode = cliOptions.isVerboseMode();
 
-            JReadify jReadify = new JReadify();
+            AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(JReadifyConfig.class);
+
+            JReadify jReadify = applicationContext.getBean(JReadify.class);
             jReadify.execute(cliOptions);
 
             System.out.println("Arquivo gerado com sucesso: " + outputFilesDir);
