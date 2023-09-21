@@ -11,10 +11,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class EpubBuilderImpl implements EpubBuilder {
+public class EpubAssemblerImpl implements EpubAssembler {
 
     @Override
-    public void build(Ebook ebook) {
+    public void assemble(Ebook ebook) {
 
         var epub = new Book();
 

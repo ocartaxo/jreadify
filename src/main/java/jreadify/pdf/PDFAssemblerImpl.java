@@ -14,10 +14,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-public class PDFBuilderImpl implements PDFBuilder {
+public class PDFAssemblerImpl implements PdfAssembler {
 
     @Override
-    public void build(Ebook ebook) {
+    public void assemble(Ebook ebook) {
 
         Path outputFilesDir = ebook.outputFileDir();
 

@@ -1,13 +1,10 @@
 package jreadify.application;
 
-import jreadify.md.Md2HtmlRender;
-import jreadify.epub.EpubBuilder;
-import jreadify.epub.EpubBuilderImpl;
-import jreadify.pdf.PDFBuilder;
-import jreadify.pdf.PDFBuilderImpl;
 import jreadify.domain.Chapter;
 import jreadify.domain.Ebook;
-import jreadify.md.Md2HtmlRenderImpl;
+import jreadify.epub.EpubAssembler;
+import jreadify.md.Md2HtmlRender;
+import jreadify.pdf.PdfAssembler;
 
 import java.nio.file.Path;
 import java.util.List;
@@ -16,16 +13,16 @@ public class JReadify {
 
     public void execute(String format, Path mdFilesDir, Path outputFilesDir){
 
-        Md2HtmlRender md2HtmlRender = new Md2HtmlRenderImpl();
+        Md2HtmlRender md2HtmlRender = Md2HtmlRender.build();
         List<Chapter> chapters = md2HtmlRender.render(mdFilesDir);
         Ebook ebook = new Ebook(format, outputFilesDir, chapters);
 
         if ("pdf".equals(format)) {
-            PDFBuilder pdfBuilder = new PDFBuilderImpl();
-            pdfBuilder.build(ebook);
+            PdfAssembler pdfBuilder = PdfAssembler.assemble();
+            pdfBuilder.assemble(ebook);
         } else if ("epub".equals(format)) {
-            EpubBuilder epubBuilder = new EpubBuilderImpl();
-            epubBuilder.build(ebook);
+            EpubAssembler epubAssembler = EpubAssembler.build();
+            epubAssembler.assemble(ebook);
         } else {
             throw new IllegalArgumentException("Formato do ebook inválido: " + format);
         }
