@@ -1,5 +1,6 @@
 package jreadify.epub;
 
+import jreadify.application.EpubAssembler;
 import jreadify.domain.Chapter;
 import jreadify.domain.Ebook;
 import nl.siegmann.epublib.domain.Book;

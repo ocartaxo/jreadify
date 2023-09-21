@@ -8,6 +8,7 @@ import com.itextpdf.layout.element.AreaBreak;
 import com.itextpdf.layout.element.IBlockElement;
 import com.itextpdf.layout.element.IElement;
 import com.itextpdf.layout.properties.AreaBreakType;
+import jreadify.application.PdfAssembler;
 import jreadify.domain.Ebook;
 
 import java.nio.file.Files;
