@@ -12,14 +12,13 @@ public class Main {
 
         try {
 
-            var cliOptions = new CLIOptionsReader(args);
-            String format = cliOptions.getFormato();
-            Path mdFilesDir = cliOptions.getDiretorioDosMD();
-            Path outputFilesDir = cliOptions.getArquivoDeSaida();
-            verboseMode = cliOptions.isModoVerboso();
+            var cliOptions = new CliOptionsReader(args);
+
+            Path outputFilesDir = cliOptions.getOutputFilesDir();
+            verboseMode = cliOptions.isVerboseMode();
 
             JReadify jReadify = new JReadify();
-            jReadify.execute(format, mdFilesDir, outputFilesDir);
+            jReadify.execute(cliOptions);
 
             System.out.println("Arquivo gerado com sucesso: " + outputFilesDir);
 

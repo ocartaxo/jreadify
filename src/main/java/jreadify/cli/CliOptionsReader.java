@@ -1,5 +1,6 @@
 package jreadify.cli;
 
+import jreadify.application.JReadifyParams;
 import lombok.Getter;
 import org.apache.commons.cli.*;
 
@@ -11,13 +12,13 @@ import java.nio.file.Paths;
 import java.util.Comparator;
 
 @Getter
-class CLIOptionsReader {
-    private String formato;
-    private boolean modoVerboso = false;
-    private Path diretorioDosMD;
-    private Path arquivoDeSaida;
+class CliOptionsReader implements JReadifyParams {
+    private String format;
+    private boolean verboseMode = false;
+    private Path mdFilesDir;
+    private Path outputFilesDir;
 
-    public CLIOptionsReader(String[] args) throws IOException {
+    public CliOptionsReader(String[] args) throws IOException {
 
         var options = AvailableOptionsCLI.getOptions();
 
@@ -26,34 +27,34 @@ class CLIOptionsReader {
         String mdDirName = cmd.getOptionValue("dir");
 
         if (mdDirName != null) {
-            diretorioDosMD = Paths.get(mdDirName);
-            if (!Files.isDirectory(diretorioDosMD)) {
+            mdFilesDir = Paths.get(mdDirName);
+            if (!Files.isDirectory(mdFilesDir)) {
                 throw new IllegalArgumentException(mdDirName + " não é um diretório.");
             }
         } else {
-            diretorioDosMD = Paths.get("");
+            mdFilesDir = Paths.get("");
         }
 
         String ebookFormat = cmd.getOptionValue("format");
 
         if (ebookFormat != null) {
-            formato = ebookFormat.toLowerCase();
+            format = ebookFormat.toLowerCase();
         } else {
-            formato = "pdf";
+            format = "pdf";
         }
 
         String ebookOutputName = cmd.getOptionValue("output");
         if (ebookOutputName != null) {
-            arquivoDeSaida = Paths.get(ebookOutputName);
+            outputFilesDir = Paths.get(ebookOutputName);
         } else {
-            arquivoDeSaida = Paths.get("book." + formato.toLowerCase());
+            outputFilesDir = Paths.get("book." + format.toLowerCase());
         }
-        if (Files.isDirectory(arquivoDeSaida)) {
+        if (Files.isDirectory(outputFilesDir)) {
             // deleta arquivos do diretório recursivamente
-            Files.walk(arquivoDeSaida).sorted(Comparator.reverseOrder())
+            Files.walk(outputFilesDir).sorted(Comparator.reverseOrder())
                     .map(Path::toFile).forEach(File::delete);
         } else {
-            Files.deleteIfExists(arquivoDeSaida);
+            Files.deleteIfExists(outputFilesDir);
         }
 
     }

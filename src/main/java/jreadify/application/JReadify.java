@@ -8,7 +8,11 @@ import java.util.List;
 
 public class JReadify {
 
-    public void execute(String format, Path mdFilesDir, Path outputFilesDir){
+    public void execute(JReadifyParams params){
+
+        String format = params.getFormat();
+        Path mdFilesDir = params.getMdFilesDir();
+        Path outputFilesDir = params.getOutputFilesDir();
 
         Md2HtmlRender md2HtmlRender = Md2HtmlRender.build();
         List<Chapter> chapters = md2HtmlRender.render(mdFilesDir);
