@@ -1,4 +1,4 @@
-package jreadify.output.pdf;
+package jreadify.pdf;
 
 import com.itextpdf.html2pdf.HtmlConverter;
 import com.itextpdf.kernel.pdf.PdfDocument;
@@ -14,8 +14,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-public class PDFBuilder {
+public class PDFBuilderImpl implements PDFBuilder {
 
+    @Override
     public void build(Ebook ebook) {
 
         Path outputFilesDir = ebook.outputFileDir();

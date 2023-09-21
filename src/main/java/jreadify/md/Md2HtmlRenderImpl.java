@@ -16,8 +16,9 @@ import java.nio.file.PathMatcher;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class RenderMD2HTML {
+public class Md2HtmlRenderImpl implements Md2HtmlRender {
 
+    @Override
     public List<Chapter> render(Path mdFilesDir) {
 
         return getMDFiles(mdFilesDir).stream()

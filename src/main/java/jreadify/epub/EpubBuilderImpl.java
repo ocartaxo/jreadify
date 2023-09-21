@@ -1,4 +1,4 @@
-package jreadify.output.epub;
+package jreadify.epub;
 
 import jreadify.domain.Chapter;
 import jreadify.domain.Ebook;
@@ -11,8 +11,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class EpubBuilder {
+public class EpubBuilderImpl implements EpubBuilder {
 
+    @Override
     public void build(Ebook ebook) {
 
         var epub = new Book();
