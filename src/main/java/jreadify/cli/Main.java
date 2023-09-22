@@ -15,7 +15,7 @@ public class Main {
 
         try {
 
-            var cliOptions = new CliOptionsReader(args);
+            var cliOptions = new OptionsReaderCLI(args);
 
             Path outputFilesDir = cliOptions.getOutputFilesDir();
             verboseMode = cliOptions.isVerboseMode();
