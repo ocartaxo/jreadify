@@ -1,6 +1,6 @@
 package jreadify.epub;
 
-import jreadify.application.EpubAssembler;
+import jreadify.application.EbookAssembler;
 import jreadify.domain.Chapter;
 import jreadify.domain.Ebook;
 import nl.siegmann.epublib.domain.Book;
@@ -14,7 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 @Component
-public class EpubAssemblerWthEpublib implements EpubAssembler {
+public class EpubAssemblerWthEpubLib implements EbookAssembler {
 
     @Override
     public void assemble(Ebook ebook) {

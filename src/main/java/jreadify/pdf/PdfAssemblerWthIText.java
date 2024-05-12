@@ -8,7 +8,7 @@ import com.itextpdf.layout.element.AreaBreak;
 import com.itextpdf.layout.element.IBlockElement;
 import com.itextpdf.layout.element.IElement;
 import com.itextpdf.layout.properties.AreaBreakType;
-import jreadify.application.PdfAssembler;
+import jreadify.application.EbookAssembler;
 import jreadify.domain.Ebook;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +17,7 @@ import java.nio.file.Path;
 import java.util.List;
 
 @Component
-public class PdfAssemblerWthIText implements PdfAssembler {
+public class PdfAssemblerWthIText implements EbookAssembler {
 
     @Override
     public void assemble(Ebook ebook) {

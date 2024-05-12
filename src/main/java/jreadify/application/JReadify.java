@@ -2,6 +2,8 @@ package jreadify.application;
 
 import jreadify.domain.Chapter;
 import jreadify.domain.Ebook;
+import jreadify.epub.EpubAssemblerWthEpubLib;
+import jreadify.pdf.PdfAssemblerWthIText;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,14 +14,13 @@ import java.util.List;
 public class JReadify {
 
     private Md2HtmlRender md2HtmlRender;
-    private PdfAssembler pdfAssembler;
-    private EpubAssembler epubAssembler;
+
+    private EbookAssembler assembler;
+
 
     @Autowired
-    public JReadify(Md2HtmlRender md2HtmlRender, PdfAssembler pdfAssembler, EpubAssembler epubAssembler) {
+    public JReadify(Md2HtmlRender md2HtmlRender) {
         this.md2HtmlRender = md2HtmlRender;
-        this.pdfAssembler = pdfAssembler;
-        this.epubAssembler = epubAssembler;
     }
 
     public void execute(JReadifyParams params){
@@ -32,13 +33,14 @@ public class JReadify {
         Ebook ebook = new Ebook(format, outputFilesDir, chapters);
 
         if ("pdf".equals(format)) {
-            pdfAssembler.assemble(ebook);
+            assembler = new PdfAssemblerWthIText();
         } else if ("epub".equals(format)) {
-            epubAssembler.assemble(ebook);
+            assembler = new EpubAssemblerWthEpubLib();
         } else {
             throw new IllegalArgumentException("Formato do ebook inválido: " + format);
         }
 
+        assembler.assemble(ebook);
     }
 
 }
