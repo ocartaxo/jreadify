@@ -17,7 +17,7 @@ import java.nio.file.Path;
 import java.util.List;
 
 @Component
-public class PdfAssemblerWthIText implements EbookAssembler {
+public class PDFAssembler implements EbookAssembler {
 
     @Override
     public void assemble(Ebook ebook) {

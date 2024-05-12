@@ -14,7 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 @Component
-public class EpubAssemblerWthEpubLib implements EbookAssembler {
+public class EPUBAssembler implements EbookAssembler {
 
     @Override
     public void assemble(Ebook ebook) {

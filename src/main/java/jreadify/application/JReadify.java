@@ -2,8 +2,8 @@ package jreadify.application;
 
 import jreadify.domain.Chapter;
 import jreadify.domain.Ebook;
-import jreadify.epub.EpubAssemblerWthEpubLib;
-import jreadify.pdf.PdfAssemblerWthIText;
+import jreadify.epub.EPUBAssembler;
+import jreadify.pdf.PDFAssembler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -33,9 +33,9 @@ public class JReadify {
         Ebook ebook = new Ebook(format, outputFilesDir, chapters);
 
         if ("pdf".equals(format)) {
-            assembler = new PdfAssemblerWthIText();
+            assembler = new PDFAssembler();
         } else if ("epub".equals(format)) {
-            assembler = new EpubAssemblerWthEpubLib();
+            assembler = new EPUBAssembler();
         } else {
             throw new IllegalArgumentException("Formato do ebook inválido: " + format);
         }
