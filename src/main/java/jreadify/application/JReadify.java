@@ -13,13 +13,13 @@ import java.util.List;
 @Component
 public class JReadify {
 
-    private Md2HtmlRender md2HtmlRender;
+    private MD2HtmlRender md2HtmlRender;
 
     private EbookAssembler assembler;
 
 
     @Autowired
-    public JReadify(Md2HtmlRender md2HtmlRender) {
+    public JReadify(MD2HtmlRender md2HtmlRender) {
         this.md2HtmlRender = md2HtmlRender;
     }
 
