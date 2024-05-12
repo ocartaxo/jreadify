@@ -1,6 +1,5 @@
 package jreadify.md;
 
-import jreadify.application.MD2HtmlRender;
 import jreadify.domain.Chapter;
 import org.commonmark.node.AbstractVisitor;
 import org.commonmark.node.Heading;
@@ -19,9 +18,9 @@ import java.util.List;
 import java.util.stream.Stream;
 
 @Component
-public class MD2HtmlRenderWthCommonMark implements MD2HtmlRender {
+public class MD2HtmlRender {
 
-    @Override
+
     public List<Chapter> render(Path mdFilesDir) {
 
         return getMDFiles(mdFilesDir).stream()
