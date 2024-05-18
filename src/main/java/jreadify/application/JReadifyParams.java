@@ -1,10 +1,12 @@
 package jreadify.application;
 
+import jreadify.domain.EbookFormat;
+
 import java.nio.file.Path;
 
 public interface JReadifyParams {
 
-    String getFormat();
+    EbookFormat getFormat();
     Path getMdFilesDir();
     Path getOutputFilesDir();
 }

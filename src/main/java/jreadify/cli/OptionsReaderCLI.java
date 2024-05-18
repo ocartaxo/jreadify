@@ -1,5 +1,6 @@
 package jreadify.cli;
 
+import jreadify.domain.EbookFormat;
 import lombok.Getter;
 import jreadify.application.JReadifyParams;
 import org.apache.commons.cli.*;
@@ -14,7 +15,7 @@ import java.util.Comparator;
 
 @Getter
 class OptionsReaderCLI implements JReadifyParams {
-    private String format;
+    private EbookFormat format;
     private boolean verboseMode;
     private Path mdFilesDir;
     private Path outputFilesDir;
@@ -42,7 +43,7 @@ class OptionsReaderCLI implements JReadifyParams {
         if (ebookOutputName != null) {
             outputFilesDir = Paths.get(ebookOutputName);
         } else {
-            outputFilesDir = Paths.get("book." + format.toLowerCase());
+            outputFilesDir = Paths.get("book." + format.name().toLowerCase());
         }
 
         try {
@@ -62,9 +63,9 @@ class OptionsReaderCLI implements JReadifyParams {
     private void setFormat(CommandLine cmd) {
         String ebookFormat = cmd.getOptionValue("format");
         if (ebookFormat != null) {
-            format = ebookFormat.toLowerCase();
+            format = EbookFormat.valueOf(ebookFormat.toUpperCase());
         } else {
-            format = "pdf";
+            format = EbookFormat.PDF;
         }
     }
 
