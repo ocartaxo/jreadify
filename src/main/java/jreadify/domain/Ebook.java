@@ -4,7 +4,7 @@ import java.nio.file.Path;
 import java.util.List;
 
 public record Ebook(
-        String format,
+        EbookFormat format,
         Path outputFileDir,
         List<Chapter> chapters
 ) {
