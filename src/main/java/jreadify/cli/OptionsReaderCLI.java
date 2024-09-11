@@ -87,6 +87,10 @@ class OptionsReaderCLI implements JReadifyParams {
         var help = new HelpFormatter();
 
         try {
+            if (args.length == 0){
+                throw new ParseException("Sem argumentos");
+            }
+
             return cmdParser.parse(options, args);
         } catch (ParseException e) {
             help.printHelp("jreadify", options);
