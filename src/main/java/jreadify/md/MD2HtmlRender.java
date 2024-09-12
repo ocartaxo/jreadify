@@ -29,7 +29,7 @@ public class MD2HtmlRender {
                     Node document = getMDParsed(mdFile, chapter);
 
                     render2HTML(mdFile, document, chapter);
-                    return new Chapter();
+                    return chapter;
                 }).toList();
     }
 
