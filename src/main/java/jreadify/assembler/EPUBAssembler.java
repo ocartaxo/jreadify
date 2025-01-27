@@ -1,4 +1,4 @@
-package jreadify.epub;
+package jreadify.assembler;
 
 import jreadify.application.EbookAssembler;
 import jreadify.domain.Chapter;
