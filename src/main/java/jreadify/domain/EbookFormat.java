@@ -10,7 +10,7 @@ public enum EbookFormat {
    PDF(new PDFAssembler()),
    EPUB(new EPUBAssembler());
 
-   private EbookAssembler assembler;
+   private final EbookAssembler assembler;
 
    EbookFormat(EbookAssembler assembler) {
       this.assembler = assembler;
