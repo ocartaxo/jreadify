@@ -65,6 +65,6 @@ public class HTMLAssembler implements EbookAssembler {
 
     @Override
     public boolean accept(EbookFormat format) {
-        return EbookFormat.PDF.equals(format);
+        return EbookFormat.HTML.equals(format);
     }
 }
