@@ -8,14 +8,5 @@ import lombok.Getter;
 
 @Getter
 public enum EbookFormat {
-   PDF(new PDFAssembler()),
-   EPUB(new EPUBAssembler()),
-   HTML(new HTMLAssembler());
-
-   private final EbookAssembler assembler;
-
-   EbookFormat(EbookAssembler assembler) {
-      this.assembler = assembler;
-   }
-
+   PDF, EPUB, HTML;
 }
