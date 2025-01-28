@@ -42,7 +42,7 @@ public class OptionsReaderCLI implements JReadifyParams {
         if (ebookOutputName != null) {
             outputFilesDir = Paths.get(ebookOutputName);
         } else {
-            outputFilesDir = Paths.get("book." + format.name().toLowerCase());
+            outputFilesDir = Paths.get("book-output/book." + format.name().toLowerCase());
         }
 
         try {
