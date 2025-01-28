@@ -4,6 +4,7 @@ import jreadify.domain.EbookFormat;
 import lombok.Getter;
 import jreadify.application.JReadifyParams;
 import org.apache.commons.cli.*;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,13 +15,14 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 @Getter
-class OptionsReaderCLI implements JReadifyParams {
+@Component
+public class OptionsReaderCLI implements JReadifyParams {
     private EbookFormat format;
     private boolean verboseMode;
     private Path mdFilesDir;
     private Path outputFilesDir;
 
-    public OptionsReaderCLI(String[] args) {
+    public void parseArgs(String[] args) {
 
         var options = AvailableOptionsCLI.getOptions();
 

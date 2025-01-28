@@ -9,4 +9,6 @@ public interface JReadifyParams {
     EbookFormat getFormat();
     Path getMdFilesDir();
     Path getOutputFilesDir();
+
+    void parseArgs(String[] args);
 }
