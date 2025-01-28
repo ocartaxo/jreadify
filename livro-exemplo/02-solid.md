@@ -30,7 +30,7 @@ Robert Cecil Martin, o famoso Uncle Bob, listou os seus 10 (na verdade, 11) mand
 
 ## Os Princípios de Orientação a Objetos
 
-Em 1996, fez uma série de artigos na revista _C++ Report_ sobre o que chamou de **princípios**:
+Em 1996, Robert Martin fez uma série de artigos na revista _C++ Report_ sobre o que chamou de **princípios**:
 
 - _Open-Closed Principle_ (MARTIN, 1996a)
 - _Liskov Substitution Principle_ (MARTIN, 1996b)
