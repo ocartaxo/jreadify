@@ -12,18 +12,29 @@ import java.util.List;
 @Component
 public class JReadify {
 
+    private final MD2HtmlRender md2HtmlRender;
+    private final List<EbookAssembler> ebookAssemblers;
+
+    public JReadify(MD2HtmlRender md2HtmlRender, List<EbookAssembler> ebookAssemblers) {
+        this.md2HtmlRender = md2HtmlRender;
+        this.ebookAssemblers = ebookAssemblers;
+    }
+
     public void execute(JReadifyParams params){
 
         EbookFormat format = params.getFormat();
         Path mdFilesDir = params.getMdFilesDir();
         Path outputFilesDir = params.getOutputFilesDir();
 
-        MD2HtmlRender md2HtmlRender = new MD2HtmlRender();
         List<Chapter> chapters = md2HtmlRender.render(mdFilesDir);
         Ebook ebook = new Ebook(format, outputFilesDir, chapters);
 
-        EbookAssembler assembler = EbookAssembler.build(format);
-        assembler.assemble(ebook);
+        var ebookAssembler = ebookAssemblers.stream()
+                .filter(assembler -> assembler.accept(format))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Formato de ebook inválido: " + format));
+
+        ebookAssembler.assemble(ebook);
     }
 
 }
