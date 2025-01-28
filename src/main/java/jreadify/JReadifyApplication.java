@@ -2,13 +2,13 @@ package jreadify;
 
 import jreadify.application.JReadify;
 import jreadify.cli.OptionsReaderCLI;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.nio.file.Path;
-
 @SpringBootApplication
+@Slf4j
 public class JReadifyApplication implements CommandLineRunner {
 
     private final JReadify jReadify;
@@ -25,20 +25,14 @@ public class JReadifyApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        boolean verboseMode = false;
         try {
             cliOptions.parseArgs(args);
-
-            Path outputFilesDir = cliOptions.getOutputFilesDir();
-            verboseMode = cliOptions.isVerboseMode();
-
             jReadify.execute(cliOptions);
 
-            System.out.println("Arquivo gerado com sucesso: " + outputFilesDir);
-
+            log.info("Arquivo gerado com sucesso! Path: {}", cliOptions.getOutputFilesDir());
         } catch (Exception ex) {
-            System.err.println(ex.getMessage());
-            if (verboseMode) {
+            log.error("Erro ao gerar arquivo: {}", ex.getMessage());
+            if (cliOptions.isVerboseMode()) {
                 ex.printStackTrace();
             }
             System.exit(1);
