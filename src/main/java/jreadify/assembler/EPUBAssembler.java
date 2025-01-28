@@ -3,6 +3,7 @@ package jreadify.assembler;
 import jreadify.application.EbookAssembler;
 import jreadify.domain.Chapter;
 import jreadify.domain.Ebook;
+import jreadify.domain.EbookFormat;
 import nl.siegmann.epublib.domain.Book;
 import nl.siegmann.epublib.domain.Resource;
 import nl.siegmann.epublib.epub.EpubWriter;
@@ -39,4 +40,8 @@ public class EPUBAssembler implements EbookAssembler {
 
     }
 
+    @Override
+    public boolean accept(EbookFormat format) {
+        return EbookFormat.PDF.equals(format);
+    }
 }

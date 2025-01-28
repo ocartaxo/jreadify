@@ -7,7 +7,5 @@ public interface EbookAssembler {
 
     void assemble(Ebook ebook);
 
-    static EbookAssembler build(EbookFormat format){
-        return format.getAssembler();
-    }
+    boolean accept(EbookFormat format);
 }

@@ -3,6 +3,7 @@ package jreadify.assembler;
 import jreadify.application.EbookAssembler;
 import jreadify.domain.Chapter;
 import jreadify.domain.Ebook;
+import jreadify.domain.EbookFormat;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -60,5 +61,10 @@ public class HTMLAssembler implements EbookAssembler {
     private String removeAccents(String text) {
         return Normalizer.normalize(text, Normalizer.Form.NFD)
                 .replaceAll(NON_ASCII, "");
+    }
+
+    @Override
+    public boolean accept(EbookFormat format) {
+        return EbookFormat.PDF.equals(format);
     }
 }

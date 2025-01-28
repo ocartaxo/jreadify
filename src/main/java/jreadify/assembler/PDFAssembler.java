@@ -10,6 +10,7 @@ import com.itextpdf.layout.element.IElement;
 import com.itextpdf.layout.properties.AreaBreakType;
 import jreadify.application.EbookAssembler;
 import jreadify.domain.Ebook;
+import jreadify.domain.EbookFormat;
 import org.springframework.stereotype.Component;
 
 import java.nio.file.Files;
@@ -42,5 +43,10 @@ public class PDFAssembler implements EbookAssembler {
         } catch (Exception ex) {
             throw new IllegalStateException("Erro ao criar arquivo PDF: " + ebook.outputFileDir().toAbsolutePath(), ex);
         }
+    }
+
+    @Override
+    public boolean accept(EbookFormat format) {
+        return EbookFormat.PDF.equals(format);
     }
 }
