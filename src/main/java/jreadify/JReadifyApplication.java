@@ -2,17 +2,21 @@ package jreadify;
 
 import jreadify.application.JReadify;
 import jreadify.cli.OptionsReaderCLI;
-import lombok.extern.slf4j.Slf4j;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 @SpringBootApplication
-@Slf4j
 public class JReadifyApplication implements CommandLineRunner {
 
     private final JReadify jReadify;
     private final OptionsReaderCLI cliOptions;
+
+    private static final Logger log = LoggerFactory.getLogger(JReadifyApplication.class);
 
     public JReadifyApplication(JReadify jReadify, OptionsReaderCLI optionsReaderCLI) {
         this.jReadify = jReadify;
