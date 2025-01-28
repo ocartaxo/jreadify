@@ -1,8 +1,7 @@
 package jreadify.cli;
 
-import jreadify.domain.EbookFormat;
-import lombok.Getter;
 import jreadify.application.JReadifyParams;
+import jreadify.domain.EbookFormat;
 import org.apache.commons.cli.*;
 import org.springframework.stereotype.Component;
 
@@ -11,10 +10,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.Comparator;
 
-@Getter
 @Component
 public class OptionsReaderCLI implements JReadifyParams {
     private EbookFormat format;
@@ -36,7 +33,7 @@ public class OptionsReaderCLI implements JReadifyParams {
     }
 
     private void setVerboseMode(CommandLine cmd) {
-        verboseMode = Arrays.stream(cmd.getArgs()).anyMatch(arg -> arg.startsWith("v"));
+        verboseMode = cmd.hasOption('v');
     }
 
     private void setOutputFilesDir(CommandLine cmd) {
@@ -80,7 +77,7 @@ public class OptionsReaderCLI implements JReadifyParams {
                 throw new IllegalArgumentException(mdDirName + " não é um diretório.");
             }
         } else {
-            mdFilesDir = Paths.get("");
+            mdFilesDir = Paths.get("/home/ocartaxo/IdeaProjects/jreadify/livro-exemplo");
         }
     }
 
@@ -114,5 +111,22 @@ public class OptionsReaderCLI implements JReadifyParams {
 
     }
 
+    @Override
+    public EbookFormat getFormat() {
+        return format;
+    }
 
+    public boolean isVerboseMode() {
+        return verboseMode;
+    }
+
+    @Override
+    public Path getMdFilesDir() {
+        return mdFilesDir;
+    }
+
+    @Override
+    public Path getOutputFilesDir() {
+        return outputFilesDir;
+    }
 }
