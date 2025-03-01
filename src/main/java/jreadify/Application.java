@@ -11,20 +11,20 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-public class JReadifyApplication implements CommandLineRunner {
+public class Application implements CommandLineRunner {
 
     private final JReadify jReadify;
     private final OptionsReaderCLI cliOptions;
 
-    private static final Logger log = LoggerFactory.getLogger(JReadifyApplication.class);
+    private static final Logger log = LoggerFactory.getLogger(Application.class);
 
-    public JReadifyApplication(JReadify jReadify, OptionsReaderCLI optionsReaderCLI) {
+    public Application(JReadify jReadify, OptionsReaderCLI optionsReaderCLI) {
         this.jReadify = jReadify;
         this.cliOptions = optionsReaderCLI;
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(JReadifyApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
 
     @Override
