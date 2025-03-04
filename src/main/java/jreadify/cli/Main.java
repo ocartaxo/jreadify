@@ -1,8 +1,7 @@
-package jreadify;
+package jreadify.cli;
 
 import jreadify.application.JReadify;
-import jreadify.cli.OptionsReaderCLI;
-
+import jreadify.application.JReadifyParams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -10,21 +9,21 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
-@SpringBootApplication
-public class Application implements CommandLineRunner {
+@SpringBootApplication(scanBasePackages = {"jreadify"})
+public class Main implements CommandLineRunner {
 
     private final JReadify jReadify;
-    private final OptionsReaderCLI cliOptions;
+    private final JReadifyParams cliOptions;
 
-    private static final Logger log = LoggerFactory.getLogger(Application.class);
+    private static final Logger log = LoggerFactory.getLogger(Main.class);
 
-    public Application(JReadify jReadify, OptionsReaderCLI optionsReaderCLI) {
+    public Main(JReadify jReadify, JReadifyParams optionsReaderCLI) {
         this.jReadify = jReadify;
         this.cliOptions = optionsReaderCLI;
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(Main.class, args);
     }
 
     @Override
