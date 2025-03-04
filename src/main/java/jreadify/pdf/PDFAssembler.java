@@ -1,4 +1,4 @@
-package jreadify.assembler;
+package jreadify.pdf;
 
 import com.itextpdf.html2pdf.HtmlConverter;
 import com.itextpdf.kernel.pdf.PdfDocument;

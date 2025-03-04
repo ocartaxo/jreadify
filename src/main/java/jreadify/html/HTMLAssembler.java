@@ -1,4 +1,4 @@
-package jreadify.assembler;
+package jreadify.html;
 
 import jreadify.application.EbookAssembler;
 import jreadify.domain.Chapter;
