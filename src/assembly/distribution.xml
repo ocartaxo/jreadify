@@ -11,7 +11,7 @@
             <directory>${project.basedir}/src/scripts</directory>
             <outputDirectory>${file.separator}</outputDirectory>
             <includes>
-                <include>cotuba.sh</include>
+                <include>jreadify.sh</include>
             </includes>
         </fileSet>
     </fileSets>
