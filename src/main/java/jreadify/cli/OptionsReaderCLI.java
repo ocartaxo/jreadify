@@ -116,6 +116,7 @@ public class OptionsReaderCLI implements JReadifyParams {
         return format;
     }
 
+    @Override
     public boolean isVerboseMode() {
         return verboseMode;
     }
