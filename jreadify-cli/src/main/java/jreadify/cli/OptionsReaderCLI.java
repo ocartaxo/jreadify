@@ -98,7 +98,6 @@ public class OptionsReaderCLI implements JReadifyParams {
     }
 
     private static class AvailableOptionsCLI {
-
         public static Options getOptions() {
             Options options = new Options();
             options.addOption(new Option("d", "dir", true, "Diretório que contém os arquivos md. Default: diretório atual."));

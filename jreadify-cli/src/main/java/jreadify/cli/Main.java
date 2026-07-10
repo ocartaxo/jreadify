@@ -34,7 +34,7 @@ public class Main implements CommandLineRunner {
 
             log.info("Arquivo gerado com sucesso! Path: {}", cliOptions.getOutputFilesDir());
         } catch (Exception ex) {
-            log.error("Erro ao gerar arquivo: {}", ex.getMessage());
+            log.error("Erro ao gerar arquivo: {}", ex);
             if (cliOptions.isVerboseMode()) {
                 ex.printStackTrace();
             }
