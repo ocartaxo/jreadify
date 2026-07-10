@@ -1,6 +1,7 @@
 package jreadify.md;
 
 import jreadify.domain.Chapter;
+import jreadify.plugin.Plugin;
 import org.commonmark.node.AbstractVisitor;
 import org.commonmark.node.Heading;
 import org.commonmark.node.Node;
@@ -68,8 +69,10 @@ public class MD2HtmlRender {
 
             chapter.setHtmlContent(html);
 
+            Plugin.rendered(chapter);
+
         } catch (Exception ex) {
-            throw new IllegalStateException("Erro ao renderizar para HTML o arquivo " + mdFile, ex);
+            throw new IllegalStateException("Erro ao renderizar para HTML o arquivo " + mdFile + " Mensagem: " + ex.getMessage(), ex);
         }
 
 

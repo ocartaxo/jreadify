@@ -4,6 +4,7 @@ import jreadify.domain.Chapter;
 import jreadify.domain.Ebook;
 import jreadify.domain.EbookFormat;
 import jreadify.md.MD2HtmlRender;
+import jreadify.plugin.Plugin;
 import org.springframework.stereotype.Component;
 
 import java.nio.file.Path;
@@ -35,6 +36,8 @@ public class JReadify {
                 .orElseThrow(() -> new IllegalArgumentException("Formato de ebook inválido: " + format));
 
         ebookAssembler.assemble(ebook);
+
+        Plugin.generated(ebook);
     }
 
 }
