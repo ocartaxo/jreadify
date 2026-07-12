@@ -2,6 +2,7 @@ package jreadify.md;
 
 import jreadify.domain.Chapter;
 import jreadify.plugin.Plugin;
+import jreadify.plugin.Plugins;
 import org.commonmark.node.AbstractVisitor;
 import org.commonmark.node.Heading;
 import org.commonmark.node.Node;
@@ -21,6 +22,11 @@ import java.util.stream.Stream;
 @Component
 public class MD2HtmlRender {
 
+    public Plugins plugins;
+
+    public MD2HtmlRender(Plugins plugins) {
+        this.plugins = plugins;
+    }
 
     public List<Chapter> render(Path mdFilesDir) {
 
@@ -35,28 +41,11 @@ public class MD2HtmlRender {
     }
 
     private Node getMDParsed(Path mdFile, Chapter chapter) {
-        Parser parser = Parser.builder().build();
-        Node document;
-
         try {
-            document = parser.parseReader(Files.newBufferedReader(mdFile));
-            document.accept(new AbstractVisitor() {
-                @Override
-                public void visit(Heading heading) {
-                    // TODO usar o design pattern CoR
-                    if (heading.getLevel() == 1) {
-                        chapter.setTitle(((Text) heading.getFirstChild()).getLiteral());
-                    } else if (heading.getLevel() == 2) {
-                        // TODO seção
-                    } else if (heading.getLevel() == 3) {
-                        // TODO título
-                    }
-
-                }
-            });
-
+            Parser parser = Parser.builder().build();
+            Node document = parser.parseReader(Files.newBufferedReader(mdFile));
+            document.accept(new TitleExtractor(chapter));
             return document;
-
         } catch (Exception ex) {
             throw new IllegalStateException("Erro ao fazer parse do arquivo " + mdFile, ex);
         }
@@ -66,11 +55,8 @@ public class MD2HtmlRender {
         try {
             HtmlRenderer renderer = HtmlRenderer.builder().build();
             String html = renderer.render(document);
-
             chapter.setHtmlContent(html);
-
-            Plugin.rendered(chapter);
-
+            plugins.rendered(chapter);
         } catch (Exception ex) {
             throw new IllegalStateException("Erro ao renderizar para HTML o arquivo " + mdFile + " Mensagem: " + ex.getMessage(), ex);
         }
