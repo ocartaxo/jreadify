@@ -1,4 +1,4 @@
-package br.com.paradizzo.tema;
+package br.com.paradizo.tema;
 
 import jreadify.domain.Ebook;
 import jreadify.plugin.Plugin;
@@ -6,7 +6,7 @@ import jreadify.plugin.Plugin;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-public class Paradizzo implements Plugin {
+public class Paradizo implements Plugin {
 
     public static final String THEME_CSS_PATH = "/theme.css";
 

@@ -1,12 +1,8 @@
-package br.com.paradizzo.tema;
+package br.com.paradizo.tema;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.*;
-import java.util.Collections;
 
 public class FileUtils {
 
