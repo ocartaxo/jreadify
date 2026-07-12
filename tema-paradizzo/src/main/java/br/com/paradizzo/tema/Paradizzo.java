@@ -10,6 +10,16 @@ public class Paradizzo implements Plugin {
 
     public static final String THEME_CSS_PATH = "/theme.css";
 
+    @Override
+    public String afterRender(String chapterHtml) {
+        return applyTheme(chapterHtml);
+    }
+
+    @Override
+    public void afterAssemble(Ebook ebook) {
+        return;
+    }
+
     private String getCSSTheme(){
         return FileUtils.getResourceContents(THEME_CSS_PATH);
     }
@@ -21,15 +31,5 @@ public class Paradizzo implements Plugin {
         doc.select("head").append("<style> "  + css + " </style>");
 
         return doc.html();
-    }
-
-    @Override
-    public String afterRender(String chapterHtml) {
-        return applyTheme(chapterHtml);
-    }
-
-    @Override
-    public void afterAssemble(Ebook ebook) {
-        return;
     }
 }
