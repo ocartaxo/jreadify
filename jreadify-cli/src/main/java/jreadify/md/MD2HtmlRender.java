@@ -1,7 +1,6 @@
 package jreadify.md;
 
 import jreadify.domain.Chapter;
-import jreadify.plugin.Plugin;
 import jreadify.plugin.Plugins;
 import org.commonmark.node.AbstractVisitor;
 import org.commonmark.node.Heading;
@@ -22,62 +21,48 @@ import java.util.stream.Stream;
 @Component
 public class MD2HtmlRender {
 
-    public Plugins plugins;
+    private final Plugins plugins;
 
     public MD2HtmlRender(Plugins plugins) {
         this.plugins = plugins;
     }
 
     public List<Chapter> render(Path mdFilesDir) {
-
         return getMDFiles(mdFilesDir).stream()
-                .map(mdFile -> {
-                    Chapter chapter = new Chapter();
-                    Node document = getMDParsed(mdFile, chapter);
-
-                    render2HTML(mdFile, document, chapter);
-                    return chapter;
-                }).toList();
+                .map(this::renderChapter)
+                .toList();
     }
 
-    private Node getMDParsed(Path mdFile, Chapter chapter) {
+    private Chapter renderChapter(Path mdFile) {
+        Chapter chapter = new Chapter();
+        Node document = parseMarkdown(mdFile, chapter);
+        chapter.setHtmlContent(renderToHtml(document));
+        plugins.rendered(chapter);
+        return chapter;
+    }
+
+    private Node parseMarkdown(Path mdFile, Chapter chapter) {
         try {
             Parser parser = Parser.builder().build();
             Node document = parser.parseReader(Files.newBufferedReader(mdFile));
             document.accept(new TitleExtractor(chapter));
             return document;
-        } catch (Exception ex) {
+        } catch (IOException ex) {
             throw new IllegalStateException("Erro ao fazer parse do arquivo " + mdFile, ex);
         }
     }
 
-    public void render2HTML(Path mdFile, Node document, Chapter chapter) {
-        try {
-            HtmlRenderer renderer = HtmlRenderer.builder().build();
-            String html = renderer.render(document);
-            chapter.setHtmlContent(html);
-            plugins.rendered(chapter);
-        } catch (Exception ex) {
-            throw new IllegalStateException("Erro ao renderizar para HTML o arquivo " + mdFile + " Mensagem: " + ex.getMessage(), ex);
-        }
-
-
+    private String renderToHtml(Node document) {
+        return HtmlRenderer.builder().build().render(document);
     }
 
-
-    public List<Path> getMDFiles(Path mdFilesDir) {
-
+    private List<Path> getMDFiles(Path mdFilesDir) {
         PathMatcher matcher = FileSystems.getDefault().getPathMatcher("glob:**/*.md");
         try (Stream<Path> mdFiles = Files.list(mdFilesDir)) {
-            return mdFiles
-                    .filter(matcher::matches)
-                    .sorted()
-                    .toList();
-
-
+            return mdFiles.filter(matcher::matches).sorted().toList();
         } catch (IOException ex) {
-            throw new IllegalStateException("Erro tentando encontrar arquivos .md em " + mdFilesDir.toAbsolutePath(), ex);
+            throw new IllegalStateException(
+                    "Erro tentando encontrar arquivos .md em " + mdFilesDir.toAbsolutePath(), ex);
         }
-
     }
 }
