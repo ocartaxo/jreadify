@@ -1,11 +1,15 @@
 package br.com.cognito.estatisticas;
 
+import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
-public class WordsCount extends TreeMap<String, Integer> {
+public class WordsCount {
+
+    private final Map<String, Integer> map = new TreeMap<>();
 
     public void addWord(String word) {
-        Integer freq = get(word);
+        Integer freq = map.get(word);
 
         if (freq != null) {
             freq++;
@@ -13,6 +17,10 @@ public class WordsCount extends TreeMap<String, Integer> {
             freq = 1;
         }
 
-        put(word, freq);
+        map.put(word, freq);
+    }
+
+    public Set<Map.Entry<String, Integer>> entrySet() {
+        return map.entrySet();
     }
 }
