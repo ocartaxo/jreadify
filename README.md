@@ -79,10 +79,10 @@ Once installation is complete and the distribution is extracted to your Desktop,
 
 
 
-📄 License
+# 📄 License
 
 Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
 
-🙌 Acknowledgments
+# 🙌 Acknowledgments
 
 This project was built based on the concepts presented in the book "Desbravando SOLID: Práticas avançadas para códigos de qualidade em Java moderno" by Alexandre Aquiles (Editora Casa do Código).
